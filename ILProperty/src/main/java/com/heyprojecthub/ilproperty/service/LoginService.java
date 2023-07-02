@@ -5,4 +5,6 @@ import com.heyprojecthub.ilproperty.domain.User;
 
 public interface LoginService {
     ResponseResult login(User user);
+
+    ResponseResult logOut();
 }

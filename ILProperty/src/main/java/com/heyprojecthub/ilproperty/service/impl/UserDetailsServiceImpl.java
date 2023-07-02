@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -26,6 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userMapper.selectOne(lambdaQueryWrapper);
         if (Objects.isNull(user))
             throw new RuntimeException("Wrong Username");
-        return new LoginUser(user);
+        List<String> permissions = new ArrayList<>(Arrays.asList("test", "admin"));
+        return new LoginUser(user, permissions);
     }
 }

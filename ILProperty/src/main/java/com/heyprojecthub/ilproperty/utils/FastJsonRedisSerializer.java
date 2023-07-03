@@ -20,7 +20,7 @@ public class FastJsonRedisSerializer<T> implements RedisSerializer {
         ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
     }
 
-    public FastJsonRedisSerializer(Class<T> clzz) {
+    public FastJsonRedisSerializer(Class<T> clazz) {
         super();
         this.clazz = clazz;
     }

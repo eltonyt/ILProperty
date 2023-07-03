@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class LoginUser implements UserDetails {
 
+    private static final long serialVersionUID = 123456L;
+
     private User user;
 
     private List<String> permission;

@@ -1,5 +1,6 @@
 package com.heyprojecthub.ilproperty.filter;
 
+import com.alibaba.fastjson.JSONObject;
 import com.heyprojecthub.ilproperty.domain.LoginUser;
 import com.heyprojecthub.ilproperty.utils.JwtUtil;
 import com.heyprojecthub.ilproperty.utils.RedisCache;
@@ -48,10 +49,11 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
         // GET USER INFORMATION FROM REDIS
         String redisKey = "login:" + userId;
-        LoginUser loginUser = redisCache.getCacheObject(redisKey);
-        if (Objects.isNull(loginUser)) {
+        JSONObject cacheObject = redisCache.getCacheObject(redisKey);
+        if (Objects.isNull(cacheObject)) {
             throw new RuntimeException("Invalid Token");
         }
+        LoginUser loginUser = cacheObject.toJavaObject(LoginUser.class);
 
         // STORE RECORD INTO SECURITYCONTEXTHOLDER
         SecurityContext context = SecurityContextHolder.getContext();
